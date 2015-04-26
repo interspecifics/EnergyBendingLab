@@ -1,24 +1,24 @@
-#N canvas 222 23 743 751 10;
-#X obj 262 190 cnv 15 85 22 empty empty empty 20 12 0 14 -253938 -66577
+#N canvas 222 23 571 723 10;
+#X obj 234 190 cnv 15 85 22 empty empty empty 20 12 0 14 -253938 -66577
 0;
-#X obj 324 149 hsl 150 17 0 1 0 0 empty ARDUINO_TEST_RESET analog_output_(0-1)
+#X obj 296 149 hsl 150 17 0 1 0 0 empty ARDUINO_TEST_RESET analog_output_(0-1)
 20 9 1 10 -225271 -1 -1 0 0;
-#X obj 270 111 hradio 15 1 0 14 empty empty empty 0 -6 0 8 -176124
+#X obj 242 111 hradio 15 1 0 14 empty empty empty 0 -6 0 8 -176124
 -1 -1 0;
-#X text 378 97 7;
-#X text 272 97 0;
-#X text 419 97 10;
-#X text 465 97 13;
-#X text 330 97 4;
-#X text 301 97 2;
-#X text 346 97 5;
-#X text 361 97 6;
-#X text 316 97 3;
-#X text 392 97 8;
-#X text 409 97 9;
-#X text 435 97 11;
-#X text 450 97 12;
-#X text 287 97 1;
+#X text 350 97 7;
+#X text 244 97 0;
+#X text 391 97 10;
+#X text 437 97 13;
+#X text 302 97 4;
+#X text 273 97 2;
+#X text 318 97 5;
+#X text 333 97 6;
+#X text 288 97 3;
+#X text 364 97 8;
+#X text 381 97 9;
+#X text 407 97 11;
+#X text 422 97 12;
+#X text 259 97 1;
 #N canvas 235 205 423 503 analog 0;
 #X obj 38 10 inlet;
 #X obj 131 10 inlet;
@@ -59,29 +59,29 @@
 #X connect 15 0 16 0;
 #X connect 16 0 13 0;
 #X connect 17 0 14 0;
-#X restore 270 170 pd analog;
-#X text 275 129 switch pin to 'pwm' or 'servo' first;
-#X msg 270 192 analog 4 0;
-#X obj 259 351 cnv 15 85 22 empty empty empty 20 12 0 14 -253938 -66577
+#X restore 242 170 pd analog;
+#X text 247 129 switch pin to 'pwm' or 'servo' first;
+#X msg 242 192 analog 4 0;
+#X obj 231 351 cnv 15 85 22 empty empty empty 20 12 0 14 -253938 -66577
 0;
-#X obj 321 310 hsl 150 17 0 1 0 0 empty ARDUINO_TEST_RESET analog_output_(0-1)
+#X obj 293 310 hsl 150 17 0 1 0 0 empty ARDUINO_TEST_RESET analog_output_(0-1)
 20 9 1 10 -225271 -1 -1 0 0;
-#X obj 267 272 hradio 15 1 0 14 empty empty empty 0 -6 0 8 -176124
+#X obj 239 272 hradio 15 1 0 14 empty empty empty 0 -6 0 8 -176124
 -1 -1 0;
-#X text 375 258 7;
-#X text 269 258 0;
-#X text 416 258 10;
-#X text 462 258 13;
-#X text 327 258 4;
-#X text 298 258 2;
-#X text 343 258 5;
-#X text 358 258 6;
-#X text 313 258 3;
-#X text 389 258 8;
-#X text 406 258 9;
-#X text 432 258 11;
-#X text 447 258 12;
-#X text 284 258 1;
+#X text 347 258 7;
+#X text 241 258 0;
+#X text 388 258 10;
+#X text 434 258 13;
+#X text 299 258 4;
+#X text 270 258 2;
+#X text 315 258 5;
+#X text 330 258 6;
+#X text 285 258 3;
+#X text 361 258 8;
+#X text 378 258 9;
+#X text 404 258 11;
+#X text 419 258 12;
+#X text 256 258 1;
 #N canvas 72 104 423 503 analog 0;
 #X obj 38 10 inlet;
 #X obj 131 10 inlet;
@@ -122,29 +122,29 @@
 #X connect 15 0 16 0;
 #X connect 16 0 13 0;
 #X connect 17 0 14 0;
-#X restore 267 331 pd analog;
-#X text 272 290 switch pin to 'pwm' or 'servo' first;
-#X msg 267 353 analog 6 0.268456;
-#X obj 255 519 cnv 15 85 22 empty empty empty 20 12 0 14 -253938 -66577
+#X restore 239 331 pd analog;
+#X text 244 290 switch pin to 'pwm' or 'servo' first;
+#X msg 239 353 analog 6 0.268456;
+#X obj 227 519 cnv 15 85 22 empty empty empty 20 12 0 14 -253938 -66577
 0;
-#X obj 317 478 hsl 150 17 0 1 0 0 empty ARDUINO_TEST_RESET analog_output_(0-1)
+#X obj 289 478 hsl 150 17 0 1 0 0 empty ARDUINO_TEST_RESET analog_output_(0-1)
 20 9 1 10 -225271 -1 -1 0 0;
-#X obj 263 440 hradio 15 1 0 14 empty empty empty 0 -6 0 8 -176124
+#X obj 235 440 hradio 15 1 0 14 empty empty empty 0 -6 0 8 -176124
 -1 -1 0;
-#X text 371 426 7;
-#X text 265 426 0;
-#X text 412 426 10;
-#X text 458 426 13;
-#X text 323 426 4;
-#X text 294 426 2;
-#X text 339 426 5;
-#X text 354 426 6;
-#X text 309 426 3;
-#X text 385 426 8;
-#X text 402 426 9;
-#X text 428 426 11;
-#X text 443 426 12;
-#X text 280 426 1;
+#X text 343 426 7;
+#X text 237 426 0;
+#X text 384 426 10;
+#X text 430 426 13;
+#X text 295 426 4;
+#X text 266 426 2;
+#X text 311 426 5;
+#X text 326 426 6;
+#X text 281 426 3;
+#X text 357 426 8;
+#X text 374 426 9;
+#X text 400 426 11;
+#X text 415 426 12;
+#X text 252 426 1;
 #N canvas 72 104 423 503 analog 0;
 #X obj 38 10 inlet;
 #X obj 131 10 inlet;
@@ -185,9 +185,9 @@
 #X connect 15 0 16 0;
 #X connect 16 0 13 0;
 #X connect 17 0 14 0;
-#X restore 263 499 pd analog;
-#X text 268 459 switch pin to 'pwm' or 'servo' first;
-#X msg 263 521 analog 7 0.308725;
+#X restore 235 499 pd analog;
+#X text 240 459 switch pin to 'pwm' or 'servo' first;
+#X msg 235 521 analog 7 0.308725;
 #N canvas 686 143 887 628 arduino 1;
 #X obj 32 100 cnv 15 60 22 empty empty empty 20 12 0 14 -253938 -66577
 0;
@@ -891,19 +891,19 @@
 #X connect 57 0 33 0;
 #X connect 58 0 33 0;
 #X connect 62 0 33 0;
-#X restore 420 554 pd arduino;
-#X floatatom 394 581 5 0 0 0 - - -;
-#X floatatom 438 580 5 0 0 0 - - -;
-#X floatatom 488 581 5 0 0 0 - - -;
-#X obj 389 604 s avr1;
-#X obj 438 605 s avr2;
-#X obj 488 606 s avr3;
-#X obj 270 212 s a1;
-#X obj 267 373 s a2;
-#X obj 262 545 s a3;
-#X obj 425 521 r a1;
-#X obj 460 521 r a2;
-#X obj 498 521 r a4;
+#X restore 103 624 pd arduino;
+#X floatatom 77 645 5 0 0 0 - - -;
+#X floatatom 121 645 5 0 0 0 - - -;
+#X floatatom 171 645 5 0 0 0 - - -;
+#X obj 72 664 s avr1;
+#X obj 121 664 s avr2;
+#X obj 171 664 s avr3;
+#X obj 242 212 s a1;
+#X obj 239 373 s a2;
+#X obj 234 545 s a3;
+#X obj 108 602 r a1;
+#X obj 143 602 r a2;
+#X obj 181 602 r a4;
 #N canvas 346 302 450 278 (subpatch) 0;
 #X obj 24 121 -;
 #X floatatom 50 99 5 0 0 0 - - -;
@@ -947,8 +947,8 @@
 #X connect 13 0 12 1;
 #X connect 14 0 7 0;
 #X connect 15 0 14 1;
-#X coords 0 1 100 -1 150 50 1 0 0;
-#X restore 94 99 graph;
+#X coords 0 1 100 -1 100 50 1 0 0;
+#X restore 72 99 graph;
 #N canvas 346 302 450 278 (subpatch) 0;
 #X obj 24 121 -;
 #X floatatom 50 99 5 0 0 0 - - -;
@@ -992,8 +992,8 @@
 #X connect 13 0 6 0;
 #X connect 14 0 13 1;
 #X connect 20 0 0 0;
-#X coords 0 1 100 -1 150 50 1 0 0;
-#X restore 96 260 graph;
+#X coords 0 1 100 -1 100 50 1 0 0;
+#X restore 74 260 graph;
 #N canvas 346 302 450 278 (subpatch) 0;
 #X obj 24 121 -;
 #X floatatom 50 99 5 0 0 0 - - -;
@@ -1037,12 +1037,12 @@
 #X connect 13 0 6 0;
 #X connect 14 0 13 1;
 #X connect 20 0 0 0;
-#X coords 0 1 100 -1 150 50 1 0 0;
-#X restore 100 428 graph;
-#X text 272 82 Select pin 9 to print pwm to module;
-#X text 268 243 Select pin 10 to print pwm to module;
-#X text 264 412 Select pin 11 to print pwm to module;
-#X obj 269 26 cnv 15 100 22 empty empty empty 20 12 0 14 -253938 -66577
+#X coords 0 1 100 -1 100 50 1 0 0;
+#X restore 78 428 graph;
+#X text 244 82 Select pin 9 to print pwm to module;
+#X text 240 243 Select pin 10 to print pwm to module;
+#X text 236 412 Select pin 11 to print pwm to module;
+#X obj 227 663 cnv 15 100 22 empty empty empty 20 12 0 14 -253938 -66577
 0;
 #N canvas 660 200 446 317 pinMode 0;
 #X obj 94 267 outlet;
@@ -1260,17 +1260,19 @@
 #X connect 22 0 21 22;
 #X connect 23 0 21 23;
 #X coords 0 -1 1 1 242 60 2 100 100;
-#X restore 275 -36 pd pinMode;
-#X text 522 9 servo;
-#X text 522 -1 pwm;
-#X text 522 -29 input;
-#X text 522 -20 output;
-#X text 522 -10 analog;
-#X text 296 -64 configure mode for each pin:;
-#X text 522 -40 NONE;
-#X msg 275 28 pinMode 16 analog;
-#X obj 275 50 s pin;
-#X obj 385 520 r pin;
+#X restore 233 601 pd pinMode;
+#X text 480 646 servo;
+#X text 480 636 pwm;
+#X text 480 608 input;
+#X text 480 617 output;
+#X text 480 627 analog;
+#X text 254 573 configure mode for each pin:;
+#X text 480 597 NONE;
+#X msg 233 665 pinMode 16 analog;
+#X obj 233 687 s pin;
+#X obj 68 602 r pin;
+#X obj 72 36 hsl 380 25 0 127 0 0 empty empty EnergyBendingLab_PWM
+-2 11 0 20 -204786 -204786 -33289 0 1;
 #X connect 1 0 17 1;
 #X connect 2 0 17 0;
 #X connect 17 0 19 0;
