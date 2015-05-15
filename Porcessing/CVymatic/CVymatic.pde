@@ -26,6 +26,9 @@ import controlP5.*;
 OpenCV opencv;
 Capture video;
 PImage src, preProcessedImage, processedImage, contoursImage;
+//grabar imagen 
+boolean record = false;
+
 
 ArrayList<Contour> contours;
 
@@ -43,6 +46,7 @@ float contrast = 1.35;
 int brightness = 0;
 int threshold = 75;
 boolean useAdaptiveThreshold = false; // use basic thresholding
+boolean RecordTimelapse = false; // genera una imagen por segundo 
 int thresholdBlockSize = 489;
 int thresholdConstant = 45;
 int blobSizeThreshold = 20;
@@ -56,11 +60,11 @@ int buttonBgColor;
 void setup() {
   frameRate(15);
   
-  video = new Capture(this, 640, 480);
-  //video = new Capture(this, 640, 480, "USB2.0 PC CAMERA");
+  //video = new Capture(this, cameras[0]);
+  video = new Capture(this, 960, 540, "HD Pro Webcam C920");
   video.start();
   
-  opencv = new OpenCV(this, 640, 480);
+  opencv = new OpenCV(this, 960, 540);
   contours = new ArrayList<Contour>();
   
   // Blobs list
@@ -77,7 +81,8 @@ void setup() {
 }
 
 void draw() {
-  
+    background(0);
+
   // Read last captured frame
   if (video.available()) {
     video.read();
@@ -94,7 +99,7 @@ void draw() {
   ///////////////////////////////
   
   // Gray channel
-  opencv.gray();
+  //opencv.gray();
   
   //opencv.brightness(brightness);
   opencv.contrast(contrast);
@@ -146,6 +151,9 @@ void draw() {
   // Save snapshot for display
   contoursImage = opencv.getSnapshot();
   
+
+
+  
   // Draw
   pushMatrix();
     
@@ -170,7 +178,21 @@ void draw() {
     popMatrix(); 
     
   popMatrix();
+  
+  if (record == true) {
+
+   saveFrame("timelapse-######.png");
+   delay(1000);
+    }
+ 
+ if (record == false) {
+    record = false; // Stop recording to the file
+  }
 }
+
+
+
+
 
 ///////////////////////
 // Display Functions
@@ -357,8 +379,10 @@ ArrayList<Contour> getBlobsFromContours(ArrayList<Contour> newContours) {
     newBlobs.add(contour);
   }
   
-  return newBlobs;
+  return newBlobs; 
+
 }
+
 
 //////////////////////////
 // CONTROL P5 Functions
@@ -368,14 +392,14 @@ void initControls() {
   // Slider for contrast
   cp5.addSlider("contrast")
      .setLabel("contrast")
-     .setPosition(20,50)
+     .setPosition(15,80)
      .setRange(0.0,6.0)
      ;
      
   // Slider for threshold
   cp5.addSlider("threshold")
      .setLabel("threshold")
-     .setPosition(20,110)
+     .setPosition(15,110)
      .setRange(0,255)
      ;
   
@@ -383,35 +407,49 @@ void initControls() {
   cp5.addToggle("toggleAdaptiveThreshold")
      .setLabel("use adaptive threshold")
      .setSize(10,10)
-     .setPosition(20,144)
+     .setPosition(15,170)
      ;
      
   // Slider for adaptive threshold block size
   cp5.addSlider("thresholdBlockSize")
      .setLabel("a.t. block size")
-     .setPosition(20,180)
+     .setPosition(15,200)
      .setRange(1,700)
      ;
      
   // Slider for adaptive threshold constant
   cp5.addSlider("thresholdConstant")
      .setLabel("a.t. constant")
-     .setPosition(20,200)
+     .setPosition(15,230)
      .setRange(-100,100)
      ;
   
   // Slider for blur size
   cp5.addSlider("blurSize")
      .setLabel("blur size")
-     .setPosition(20,260)
+     .setPosition(15,290)
      .setRange(1,20)
      ;
      
   // Slider for minimum blob size
   cp5.addSlider("blobSizeThreshold")
      .setLabel("min blob size")
-     .setPosition(20,290)
+     .setPosition(15,320)
      .setRange(0,60)
+     ;
+     
+  // Toggle to activae record CVS file
+  cp5.addToggle("toggleRecordTimelapse")
+     .setLabel("record timelapse")
+     .setSize(10,10)
+     .setPosition(15,380)
+     ;   
+     
+      // Slider for timelapse
+  cp5.addSlider("timelapse")
+     .setLabel("time-lapse")
+     .setPosition(15,410)
+     .setRange(0.01,60)
      ;
      
   // Store the default background color, we gonna need it later
@@ -454,6 +492,30 @@ void setLock(Controller theController, boolean theValue) {
   } else {
     theController.setColorBackground(color(buttonBgColor));
     theController.setColorForeground(color(buttonColor));
+  }
+}
+
+void toggleRecordTimelapse(boolean theFlag) {
+  
+  RecordTimelapse = theFlag;
+  
+  if (RecordTimelapse) {
+    
+    // Lock basic threshold
+   record = true;
+  
+  //setLock(cp5.getController("timelapse"), false);
+}
+   
+   else {
+      record = false;
+       
+  }
+}
+
+void keyPressed() {
+  if (key == 'R' || key == 'r') { // Press R to save the file
+    record = true;
   }
 }
 
