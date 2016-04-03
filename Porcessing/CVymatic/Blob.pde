@@ -9,7 +9,18 @@
  * University of Applied Sciences Potsdam, 2014
  */
 
+import oscP5.*;
+import netP5.*;
+
+private static NetAddress oscOutAddress;
+private static OscMessage mMessage;
+
+
 class Blob {
+   private final static int OSC_OUT_PERIOD = 100;
+  private final static int OSC_OUT_PORT = 8666;
+  private final static String OSC_OUT_HOST = "localhost";
+  private final static String OSC_OUT_PATTERN = "/blobOSC/";
   
   private PApplet parent;
   
@@ -88,5 +99,15 @@ class Blob {
   }
 }
 
+
 //send OSC Data
+public void sendOsc() {
+
+  String mAddrPatt = OSC_OUT_PATTERN+getName()+"/";
+  mMessage.clear();
+  mMessage.setAddrPattern(mAddrPatt+"Blob");
+  mMessage.add(getMin());
+  OscP5.flush(mMessage, oscOutAddress);
+}
+
 

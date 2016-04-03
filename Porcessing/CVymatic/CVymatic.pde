@@ -1,18 +1,7 @@
-/**
- * Image Filtering
- * This sketch will help us to adjust the filter values to optimize blob detection
- * 
- * Persistence algorithm by Daniel Shifmann:
- * http://shiffman.net/2011/04/26/opencv-matching-faces-over-time/
- *
- * @author: Jordi Tost (@jorditost)
- * @url: https://github.com/jorditost/ImageFiltering/tree/master/ImageFilteringWithBlobPersistence
- *
- * University of Applied Sciences Potsdam, 2014
- *
- * It requires the ControlP5 Processing library:
- * http://www.sojamo.de/libraries/controlP5/
- */
+//
+// * It requires the ControlP5 Processing library:
+ //* http://www.sojamo.de/libraries/controlP5/
+ //*/
 
 // add a frame recorder for take a picture every 2 minutes
 // check conection to a cannon camara
@@ -24,10 +13,9 @@ import processing.video.*;
 import controlP5.*;
 import oscP5.*;
 import netP5.*;
+final static int OSC_IN_PORT = 8444;
 
-final static int OSC_IN_PORT = 8445;
-
-
+OscP5 mOscP5;
 OpenCV opencv;
 Capture video;
 PImage src, preProcessedImage, processedImage, contoursImage;
@@ -36,14 +24,10 @@ boolean record = false;
 
 
 ArrayList<Contour> contours;
-
 // List of detected contours parsed as blobs (every frame)
 ArrayList<Contour> newBlobContours;
-
 // List of my blob objects (persistent)
 ArrayList<Blob> blobList;
-
-
 // Number of blobs detected over all time. Used to set IDs.
 int blobCount = 0;
 
@@ -61,12 +45,14 @@ int blurSize = 4;
 ControlP5 cp5;
 int buttonColor;
 int buttonBgColor;
+long lastOscMillis;
 
 void setup() {
   frameRate(15);
-  
+  lastOscMillis = millis();
+  mOscP5 = new OscP5(this, OSC_IN_PORT);
   //video = new Capture(this, cameras[0]);
-  video = new Capture(this, 960, 540, "HD Pro Webcam C920");
+  video = new Capture(this, 960, 540, "FaceTime HD Camera"); //ehe camera
   video.start();
   
   opencv = new OpenCV(this, 960, 540);
@@ -187,16 +173,14 @@ void draw() {
   if (record == true) {
 
    saveFrame("timelapse-######.png");
-   delay(10000);
+   delay(100);
     }
  
  if (record == false) {
     record = false; // Stop recording to the file
   }
+  
 }
-
-
-
 
 
 ///////////////////////
@@ -385,6 +369,13 @@ ArrayList<Contour> getBlobsFromContours(ArrayList<Contour> newContours) {
   }
   
   return newBlobs; 
+  
+        // write osc
+  if (millis()-lastOscMillis > 100) {
+    for (Blob b : blobList) {
+      b.sendOsc();
+    }
+  } 
 
 }
 
@@ -523,4 +514,7 @@ void keyPressed() {
     record = true;
   }
 }
+
+
+
 
