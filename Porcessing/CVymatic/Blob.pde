@@ -17,7 +17,7 @@ private static OscMessage mMessage;
 
 
 class Blob {
-   private final static int OSC_OUT_PERIOD = 100;
+  private final static int OSC_OUT_PERIOD = 100;
   private final static int OSC_OUT_PORT = 8666;
   private final static String OSC_OUT_HOST = "localhost";
   private final static String OSC_OUT_PATTERN = "/blobOSC/";
@@ -97,17 +97,18 @@ class Blob {
   public Rectangle getBoundingBox() {
     return contour.getBoundingBox();
   }
-}
-
-
-//send OSC Data
-  public void sendOsc() {
-  String mAddrPatt = OSC_OUT_PATTERN()+"/";
+  
+  //send OSC Data
+  void sendOsc() {
+  String mAddrPatt = OSC_OUT_PATTERN();
   mMessage.clear();
   mMessage.setAddrPattern(mAddrPatt+"id");
   mMessage.add(Blob);
   mMessage.add(contour); 
   OscP5.flush(mMessage, oscOutAddress);
+ }
+
 }
+
 
 
