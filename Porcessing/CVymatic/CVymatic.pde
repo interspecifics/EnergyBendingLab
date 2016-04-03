@@ -169,6 +169,8 @@ void draw() {
     
   popMatrix();
   
+  // press R key for timelapse recording 
+  
   if (record == true) {
 
    saveFrame("timelapse-######.png");
@@ -178,6 +180,13 @@ void draw() {
  if (record == false) {
     record = false; // Stop recording to the file
   }
+  
+  // write osc
+  if (millis()-lastOscMillis > 100) {
+    for (Blob b : blobList) {
+      b.sendOsc();
+    }
+  } 
   
 }
 
@@ -368,13 +377,6 @@ ArrayList<Contour> getBlobsFromContours(ArrayList<Contour> newContours) {
   }
   
   return newBlobs; 
-  
-        // write osc
-  if (millis()-lastOscMillis > 100) {
-    for (Blob b : blobList) {
-      b.sendOsc();
-    }
-  } 
 
 }
 
@@ -509,8 +511,12 @@ void toggleRecordTimelapse(boolean theFlag) {
 }
 
 void keyPressed() {
-  if (key == 'R' || key == 'r') { // Press R to save the file
+  if (key == 'R' || key == 'r') { // Press R start timelapse
     record = true;
+  }
+  
+  if (key == 'S' || key == 's') { // Press s stop timelapse
+    record = false;
   }
 }
 
