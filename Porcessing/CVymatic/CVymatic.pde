@@ -50,10 +50,10 @@ void setup() {
   frameRate(15);
   lastOscMillis = millis();
   mOscP5 = new OscP5(this, OSC_IN_PORT);
-  video = new Capture(this, 640, 360, "FaceTime HD Camera"); //ehe camera
+  video = new Capture(this, 960, 540, 0); //"ehe camera"
   video.start();
   
-  opencv = new OpenCV(this, 640, 360);
+  opencv = new OpenCV(this, 960, 540);
   contours = new ArrayList<Contour>();
   
   // Blobs list
@@ -510,11 +510,11 @@ void toggleRecordTimelapse(boolean theFlag) {
 }
 
 void keyPressed() {
-  if (key == 'R' || key == 'r') { // Press R start timelapse
+  if (key == 'R' || key == 'r') { // Press R start time-lapse
     record = true;
   }
   
-  if (key == 'S' || key == 's') { // Press s stop timelapse
+  if (key == 'S' || key == 's') { // Press s stop time-lapse
     record = false;
   }
 }
