@@ -185,6 +185,7 @@ void draw() {
     for (Blob b : blobList) {
       b.sendOsc();
     }
+   // lastOscMillis = millis();
   } 
   
 }

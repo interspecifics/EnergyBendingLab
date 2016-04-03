@@ -22,6 +22,9 @@ class Blob {
   private final static String OSC_OUT_HOST = "localhost";
   private final static String OSC_OUT_PATTERN = "/blobOSC/";
   
+  private String name;
+
+  
   private PApplet parent;
   
   // Contour
@@ -50,6 +53,8 @@ class Blob {
     delete = false;
     
     timer = initTimer;
+    oscOutAddress = new NetAddress(OSC_OUT_HOST, OSC_OUT_PORT);
+    mMessage = new OscMessage(OSC_OUT_PATTERN);
   }
   
   // Show me
@@ -87,6 +92,10 @@ class Blob {
   void countDown() {    
     timer--;
   }
+  
+  public String getName() {
+    return name;
+  }
 
   // I am deed, delete me
   boolean dead() {
@@ -100,6 +109,7 @@ class Blob {
   
   //send OSC Data
   public void sendOsc() {
+    
     
 Rectangle r = contour.getBoundingBox();
 double mx = r.getCenterX();
