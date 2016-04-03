@@ -99,12 +99,11 @@ class Blob {
   }
   
   //send OSC Data
-  void sendOsc() {
-  String mAddrPatt = OSC_OUT_PATTERN();
+  public void sendOsc() {
+  String mAddrPatt = OSC_OUT_PATTERN+getName()+"/";
   mMessage.clear();
   mMessage.setAddrPattern(mAddrPatt+"id");
-  mMessage.add(Blob);
-  mMessage.add(contour); 
+  mMessage.add(id);
   OscP5.flush(mMessage, oscOutAddress);
  }
 

@@ -50,11 +50,10 @@ void setup() {
   frameRate(15);
   lastOscMillis = millis();
   mOscP5 = new OscP5(this, OSC_IN_PORT);
-  //video = new Capture(this, cameras[0]);
-  video = new Capture(this, 960, 540, "FaceTime HD Camera"); //ehe camera
+  video = new Capture(this, 640, 360, "FaceTime HD Camera"); //ehe camera
   video.start();
   
-  opencv = new OpenCV(this, 960, 540);
+  opencv = new OpenCV(this, 640, 360);
   contours = new ArrayList<Contour>();
   
   // Blobs list
