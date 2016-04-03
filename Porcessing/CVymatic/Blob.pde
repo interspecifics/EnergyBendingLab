@@ -100,10 +100,17 @@ class Blob {
   
   //send OSC Data
   public void sendOsc() {
+    
+Rectangle r = contour.getBoundingBox();
+double mx = r.getCenterX();
+double my = r.getCenterY();
+
   String mAddrPatt = OSC_OUT_PATTERN+getName()+"/";
   mMessage.clear();
   mMessage.setAddrPattern(mAddrPatt+"id");
   mMessage.add(id);
+  mMessage.add(mx);
+  mMessage.add(my);
   OscP5.flush(mMessage, oscOutAddress);
  }
 
