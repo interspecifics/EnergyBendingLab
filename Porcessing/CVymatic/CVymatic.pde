@@ -3,8 +3,7 @@
  //* http://www.sojamo.de/libraries/controlP5/
  //*/
 
-// add a frame recorder for take a picture every 2 minutes
-// check conection to a cannon camara
+// add a frame recorder for take a picture every second
 // add a cvs recorder for blop positions 
  
 import gab.opencv.*;

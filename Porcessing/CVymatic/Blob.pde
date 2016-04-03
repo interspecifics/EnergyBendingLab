@@ -105,7 +105,8 @@ class Blob {
   String mAddrPatt = OSC_OUT_PATTERN()+"/";
   mMessage.clear();
   mMessage.setAddrPattern(mAddrPatt+"id");
-   mMessage.add(Blob);
+  mMessage.add(Blob);
+  mMessage.add(contour); 
   OscP5.flush(mMessage, oscOutAddress);
 }
 
