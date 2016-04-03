@@ -21,10 +21,7 @@ class Blob {
   private final static int OSC_OUT_PORT = 8666;
   private final static String OSC_OUT_HOST = "localhost";
   private final static String OSC_OUT_PATTERN = "/blobOSC/";
-  
-  private String name;
-
-  
+    
   private PApplet parent;
   
   // Contour
@@ -93,10 +90,6 @@ class Blob {
     timer--;
   }
   
-  public String getName() {
-    return name;
-  }
-
   // I am deed, delete me
   boolean dead() {
     if (timer < 0) return true;
@@ -115,7 +108,7 @@ Rectangle r = contour.getBoundingBox();
 double mx = r.getCenterX();
 double my = r.getCenterY();
 
-  String mAddrPatt = OSC_OUT_PATTERN+getName()+"/";
+  String mAddrPatt = OSC_OUT_PATTERN;
   mMessage.clear();
   mMessage.setAddrPattern(mAddrPatt+"id");
   mMessage.add(id);
