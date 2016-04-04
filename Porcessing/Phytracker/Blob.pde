@@ -106,14 +106,17 @@ class Blob {
     
 Rectangle r = contour.getBoundingBox();
 double mx = r.getCenterX();
+float x = (float) mx;
 double my = r.getCenterY();
+float y = (float) my;
+
 
   String mAddrPatt = OSC_OUT_PATTERN;
   mMessage.clear();
-  mMessage.setAddrPattern(mAddrPatt+"id");
+  mMessage.setAddrPattern(mAddrPatt+"id"+"x"+"y");
   mMessage.add(id);
-  mMessage.add(mx);
-  mMessage.add(my);
+  mMessage.add(x);
+  mMessage.add(y);
   OscP5.flush(mMessage, oscOutAddress);
  }
 

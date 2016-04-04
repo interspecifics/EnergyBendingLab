@@ -1,7 +1,7 @@
 //
 // * It requires the ControlP5 Processing library:
- //* http://www.sojamo.de/libraries/controlP5/
- //*/
+//* http://www.sojamo.de/libraries/controlP5/
+//*/
 
 // add a frame recorder for take a picture every second
 // add a cvs recorder for blop positions 
@@ -18,10 +18,8 @@ OscP5 mOscP5;
 OpenCV opencv;
 Capture video;
 PImage src, preProcessedImage, processedImage, contoursImage;
-//grabar imagen 
+//record time-lapse 
 boolean record = false;
-
-
 ArrayList<Contour> contours;
 // List of detected contours parsed as blobs (every frame)
 ArrayList<Contour> newBlobContours;
@@ -45,6 +43,8 @@ ControlP5 cp5;
 int buttonColor;
 int buttonBgColor;
 long lastOscMillis;
+Textlabel myTitle;
+Textlabel controllers;
 
 void setup() {
   frameRate(15);
@@ -393,6 +393,14 @@ void initControls() {
      .setRange(0.0,6.0)
      ;
      
+  //label 
+myTitle = cp5.addTextlabel("label")
+                    .setText("[PHYTRACKER - INTERSPECIFICS]")
+                    .setPosition(15,30)
+                    .setColorValue(0xffffffff)
+                    ;
+
+     
   // Slider for threshold
   cp5.addSlider("threshold")
      .setLabel("threshold")
@@ -501,7 +509,7 @@ void toggleRecordTimelapse(boolean theFlag) {
     // Lock basic threshold
    record = true;
   
-  //setLock(cp5.getController("timelapse"), false);
+  setLock(cp5.getController("timelapse"), true);
 }
    
    else {
