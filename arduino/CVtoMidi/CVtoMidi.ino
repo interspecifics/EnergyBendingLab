@@ -114,9 +114,9 @@ void loop() {
                  //convertir el valor mapeado a nota
                 GateInreading = note;
                  //enviar la nota que se genero con la velocida de CV2
-                 MIDI.sendNoteOn(note, 0, channel);
+                 MIDI.sendNoteOn(note, (CV2), channel);
                  delay(200);
-                 MIDI.sendNoteOff(note, 100, channel);
+                 MIDI.sendNoteOff(note, (CV2, channel);
 
                  const int value = inPitchValue * MIDI_PITCHBEND_MAX * Settings::Toto;
                  sendPitchBend(value, inChannel);
