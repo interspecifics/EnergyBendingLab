@@ -1,9 +1,9 @@
 //CV to midi module
-//Recive señales de voltage de entre 0v y 5v
+//Recibe señales de voltage de entre 0v y 5v
 //Mapea las señales a formato midi entre 0 y 127
 //Tiene 3 inputs CV1, CV2, gateIn
 //CV1 controla el pitch bend
-//CV2 modulación
+//CV2 modulación y velocidad
 //GateIn produce la nota midi
 
 #include <MIDI.h>
