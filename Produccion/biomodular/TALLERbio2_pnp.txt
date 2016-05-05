@@ -1,0 +1,53 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=TALLERbio2
+*Date=17:21:14
+*CreatedBy=Fritzing 0.9.0b.06.11.da4e
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;;33.0708;-37.4182;0;Bottom;Copper Fill2
+2;;THT;40.7732;-13.0291;-90;Bottom;S1
+3;;THT;11.5632;-13.0291;-90;Bottom;J5
+4;;THT;25.5332;-43.5091;0;Bottom;R1
+5;;;52.4002;-34.5988;0;Bottom;Copper Fill7
+6;;THT;24.2632;-13.0291;-90;Bottom;J6
+7;1µF;100 mil [THT, electrolytic];66.1732;-32.0791;90;Bottom;C6
+8;1µF;100 mil [THT, electrolytic];31.8832;-51.1291;180;Bottom;C1
+9;1µF;100 mil [THT, electrolytic];49.6632;-51.1291;0;Bottom;C4
+10;;THT;24.2632;-25.7291;-90;Bottom;J2
+11;;;15.7226;-32.1096;0;Bottom;Copper Fill1
+12;;DIP (Dual Inline) [THT];39.5032;-30.8091;0;Bottom;IC1
+13;;;42.1894;-27.0042;0;Bottom;Copper Fill10
+14;;;42.1894;-29.5442;0;Bottom;Copper Fill9
+15;;;9.2456;-10.4942;0;Bottom;Copper Fill13
+16;;;42.1894;-34.6242;0;Bottom;Copper Fill4
+17;;;62.3316;-21.9242;0;Bottom;Copper Fill12
+18;3V;;39.5032;-7.94909;-90;Bottom;VCC1
+19;;;25.527;-25.785;0;Bottom;Copper Fill5
+20;;;48.4378;-18.1142;0;Bottom;Copper Fill15
+21;100nF;100 mil [THT, multilayer];66.1732;-39.7038;90;Bottom;C5
+22;;;12.5295;-53.5459;0;Bottom;TXT1
+23;;5 mm [THT];45.8531;-45.3979;180;Bottom;LED1
+24;;;42.1894;-24.4642;0;Bottom;Copper Fill11
+25;;THT;30.6132;-37.1591;0;Bottom;J1
+26;;;42.1894;-32.0842;0;Bottom;Copper Fill8
+27;220;THT;40.7732;-48.5891;-90;Bottom;R5
+28;;THT;54.7432;-25.7291;-90;Bottom;J4
+29;;;42.1894;-36.834;0;Bottom;Copper Fill3
+30;;THT;48.3932;-34.6191;0;Bottom;J3
+31;;THT;20.4532;-40.9691;0;Bottom;R2
+32;;;45.8216;-34.5988;0;Bottom;Copper Fill6
+33;100nF;100 mil [THT, multilayer];12.8332;-42.2438;90;Bottom;C2
+34;;THT;61.0932;-38.4291;0;Bottom;R4
+35;;THT;16.6432;-5.40909;-90;Bottom;J7
+36;;THT;56.0132;-40.9691;0;Bottom;R3
+37;;;38.1762;-28.9346;0;Bottom;Copper Fill14
+38;1µF;100 mil [THT, electrolytic];12.8332;-34.6191;90;Bottom;C3

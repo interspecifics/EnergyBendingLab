@@ -1,0 +1,38 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=TALLERbio2
+*Date=19:27:46
+*CreatedBy=Fritzing 0.9.0b.06.11.da4e
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;THT;54.7432;-25.7291;-90;Bottom;J4
+2;;THT;40.7732;-13.0291;-90;Bottom;S1
+3;;;12.5297;-53.5459;0;Bottom;TXT1
+4;100nF;100 mil [THT, multilayer];66.1732;-39.7038;90;Bottom;C5
+5;;THT;20.4532;-40.9691;0;Bottom;R2
+6;;THT;16.6432;-5.40909;-90;Bottom;J7
+7;1µF;100 mil [THT, electrolytic];12.8332;-34.6191;90;Bottom;C3
+8;100nF;100 mil [THT, multilayer];12.8332;-42.2438;90;Bottom;C2
+9;220;THT;40.7732;-48.5891;-90;Bottom;R5
+10;;THT;24.2632;-13.0291;-90;Bottom;J6
+11;;THT;48.3932;-34.6191;0;Bottom;J3
+12;;THT;30.6132;-37.1591;0;Bottom;J1
+13;;THT;56.0132;-40.9691;0;Bottom;R3
+14;1µF;100 mil [THT, electrolytic];66.1732;-32.0791;90;Bottom;C6
+15;1µF;100 mil [THT, electrolytic];49.6632;-51.1291;0;Bottom;C4
+16;;THT;25.5332;-43.5091;0;Bottom;R1
+17;3V;;39.5032;-7.94909;-90;Bottom;VCC1
+18;;THT;24.2632;-25.7291;-90;Bottom;J2
+19;;THT;11.5632;-13.0291;-90;Bottom;J5
+20;;DIP (Dual Inline) [THT];39.5032;-30.8091;0;Bottom;IC1
+21;;5 mm [THT];45.8531;-45.3979;180;Bottom;LED1
+22;;THT;61.0932;-38.4291;0;Bottom;R4
+23;1µF;100 mil [THT, electrolytic];31.8832;-51.1291;180;Bottom;C1
