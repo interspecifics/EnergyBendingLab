@@ -7,6 +7,7 @@
 //GateIn produce la nota midi
 
 #include <MIDI.h>
+// detalles de la libreria: http://arduinomidilib.fortyseveneffects.com/a00015.html
 
 const int NUM_READINGS = 10;
 
