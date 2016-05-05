@@ -38,9 +38,9 @@ int GateInreading;
 
 //midi variables
 int note;
-int modulation;
-int pitchBend;
-int velocity;
+int modulation; // 14-bit resolution (0-3FFFh)
+int pitchBend; //14-bit resolution (0-3FFFh)
+int velocity; // velocidad 0 = gateOff otra velocidad = gateOn 
 
 
 void setup() {
@@ -93,7 +93,6 @@ void loop() {
   MyindexCV1 = 0;
 
  //smothing values CV2
-
  total = total - readings2[MyIndexCV2];
  readings2[MyIndexCV2] = analogRead(CV2);
  total = total + readings2[MyIndexCV2];
@@ -104,7 +103,6 @@ void loop() {
 
 
  //smothing values GateIn
-
  total = total - readings3[MyIndexGate];
  readings3[MyIndexGate] = analogRead(GateIn);
  total = total + readings3[MyIndexGate];
@@ -114,7 +112,7 @@ void loop() {
   MyindexGate = 0;
 
                  //convertir el valor mapeado a nota
-                 readings = note;
+                GateInreading = note;
                  //enviar la nota que se genero con la velocida de CV2
                  MIDI.sendNoteOn(note, 0, channel);
                  delay(200);
