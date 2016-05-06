@@ -15,9 +15,9 @@ int readings1[NUM_READINGS];
 int readings2[NUM_READINGS];
 int readings3[NUM_READINGS];
 
-int MyindexCV1 = 0; // the index of the current reading
-int MyindexCV2 = 0;
-int MyindexGate = 0;
+int MyIndexCV1 = 0; // the index of the current reading
+int MyIndexCV2 = 0;
+int MyIndexGate = 0;
 
 int total = 0; // the running total
 int average = 0;// the average
@@ -89,8 +89,8 @@ void loop() {
   total = total + readings1[MyIndexCV1];
   MyIndexCV1 = MyIndexCV1 + 1;
 
-  if (MyindexCV1 >= NUM_READINGS)
-  MyindexCV1 = 0;
+  if (MyIndexCV1 >= NUM_READINGS)
+  MyIndexCV1 = 0;
 
  //smothing values CV2
  total = total - readings2[MyIndexCV2];
@@ -98,8 +98,8 @@ void loop() {
  total = total + readings2[MyIndexCV2];
  MyIndexCV2 = MyIndexCV2 + 1;
 
-  if (MyindexCV2 >= NUM_READINGS)
-  MyindexCV2 = 0;
+  if (MyIndexCV2 >= NUM_READINGS)
+  MyIndexCV2 = 0;
 
 
  //smothing values GateIn
@@ -108,18 +108,33 @@ void loop() {
  total = total + readings3[MyIndexGate];
  MyIndexGate = MyIndexGate + 1;
 
-  if (MyindexGate >= NUM_READINGS)
-  MyindexGate = 0;
+  if (MyIndexGate >= NUM_READINGS)
+  MyIndexGate = 0;
 
                  //convertir el valor mapeado a nota
                 GateInreading = note;
                  //enviar la nota que se genero con la velocida de CV2
-                 MIDI.sendNoteOn(note, (CV2), channel);
-                 delay(200);
-                 MIDI.sendNoteOff(note, (CV2, channel);
+                 MIDI.sendNoteOn(note, CV2, MIDI_CHANNEL_OMNI);
+                 delay(100);
+                 MIDI.sendNoteOff(note, CV2, MIDI_CHANNEL_OMNI);
 
-                 const int value = inPitchValue * MIDI_PITCHBEND_MAX * Settings::Toto;
-                 sendPitchBend(value, inChannel);
+                // const int value = inPitchValue * MIDI_PITCHBEND_MAX * Settings::Toto;
+                // sendPitchBend(value, inChannel);
+                
+                Serial.println(note);
+                Serial.print("\n note:");
+                delay(1);
+                Serial.println(CV1reading);
+                Serial.print("\n CV1:");
+                delay(1);
+                Serial.println(CV2reading);
+                Serial.print("\n CV2:");
+                delay(1);
+                Serial.println(GateInreading);
+                Serial.print("\n GateIn:");
+                delay(1);
+                
+                
 
 
 }
