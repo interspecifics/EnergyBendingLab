@@ -6,140 +6,88 @@
 //CV2 modulación y velocidad
 //GateIn produce la nota midi
 
-#include <MIDI.h>
 // detalles de la libreria: http://arduinomidilib.fortyseveneffects.com/a00015.html
+#include <MIDI.h>
+MIDI_CREATE_DEFAULT_INSTANCE();
 
 const int NUM_READINGS = 10;
+const int NUM_SENSORS = 3;
+const int GATE_THRESHOLD = 100;
 
-int readings1[NUM_READINGS];
-int readings2[NUM_READINGS];
-int readings3[NUM_READINGS];
+// PINS
+int inputPins[NUM_SENSORS] = {5, 6, 7};
 
-int MyIndexCV1 = 0; // the index of the current reading
-int MyIndexCV2 = 0;
-int MyIndexGate = 0;
+// Sensor reading variables
+int readings[NUM_SENSORS][NUM_READINGS];
+int readingIndex[NUM_SENSORS];
+int readingSum[NUM_SENSORS];
+int readingAverage[NUM_SENSORS];
 
-int total = 0; // the running total
-int average = 0;// the average
-
-
-// CV INPUTS
-int CV1 = 5;
-int CV2 = 6;
-int GateIn = 7;
-
-// CV VARIABLE
-int CV1val;
-int CV2val;
-int GateInVal;
-int CV1reading;
-int CV2reading;
-int GateInreading;
-
-//midi variables
-int note;
-int modulation; // 14-bit resolution (0-3FFFh)
-int pitchBend; //14-bit resolution (0-3FFFh)
-int velocity; // velocidad 0 = gateOff otra velocidad = gateOn 
-
+// midi
+int lastNoteOn = 0;
+bool bNoteOn = 0;
 
 void setup() {
   //envia a todos los canales
   MIDI.begin(MIDI_CHANNEL_OMNI);
 
-  int sum = 0;
-
-  //revisar valores del CV1 input
-  for (int thisReading = 0; thisReading < NUM_READINGS; thisReading++)
-  { readings1[thisReading] = 0;
-    sum = sum + analogRead(CV1);//hacer lectura del sensor;
-    delay(1);
+  // init readings
+  for (int i = 0; i < NUM_SENSORS; i++) {
+    readingIndex[i] = 0;
+    readingSum[i] = 0;
+    readingAverage[i] = 0;
+    for (int j = 0; j < NUM_READINGS; j++) {
+      readings[i][j] = analogRead(inputPins[i]);
+      readingSum[i] += readings[i][j];
+      delay(1);
+    }
+    readingAverage[i] = readingSum[i] / NUM_READINGS;
   }
-
-  //revisar valores del CV2 input
-  for (int thisReading = 0; thisReading < NUM_READINGS; thisReading++)
-  { readings2[thisReading] = 0;
-    sum = sum + analogRead(CV2); //hacer lectura dle sensor2
-    delay(1);
-  }
-
-  //revisar valores GateIn
-  for (int thisReading = 0; thisReading < NUM_READINGS; thisReading++)
-{ readings3[thisReading] = 0;
-sum = sum + analogRead(GateIn);
-delay(1);
 }
-}
-
 
 
 void loop() {
+  // smooth values
+  for (int i = 0; i < NUM_SENSORS; i++) {
+    readingSum[i] -= readings[i][readingIndex[i]];
+    readings[i][readingIndex[i]] = analogRead(inputPins[i]);
+    readingSum[i] += readings[i][readingIndex[i]];
+    readingIndex[i] += 1;
+    if (readingIndex[i] >= NUM_READINGS)
+      readingIndex[i] = 0;
+  }
 
-  CV1reading = analogRead(CV1);
-  CV2reading = analogRead(CV2);
-  GateInreading = analogRead(GateIn);
-  CV1val = map(CV1reading, 0, 1023, 0, 127);
-  CV2val = map(CV2reading, 0, 1023, 0, 127);
-  GateInVal = map(GateInreading, 0, 1023, 0, 127);
+  // calculate the averages
+  for (int i = 0; i < NUM_SENSORS; i++) {
+    readingAverage[i] = readingSum[i] / NUM_READINGS;
+  }
 
+  // print values to serial
+  for (int i = 0; i < NUM_SENSORS; i++) {
+    Serial.print("\t Sensor[");
+    Serial.print(i);
+    Serial.print("]: ");
+    Serial.print(readingAverage[i]);
+  }
 
-  //smothing values CV1
-  total = total - readings1[MyIndexCV1];
-  readings1[MyIndexCV1] = analogRead(CV1);
-  total = total + readings1[MyIndexCV1];
-  MyIndexCV1 = MyIndexCV1 + 1;
+  //convertir el valor de input a nota
+  int note = map(readingAverage[0], 0, 1023, 0, 127);
+  int velocity = map(readingAverage[1], 0, 1023, 0, 127);
+  int GateVal = map(readingAverage[2], 0, 1023, 0, 127);
 
-  if (MyIndexCV1 >= NUM_READINGS)
-  MyIndexCV1 = 0;
+  /// ????
+  if ((GateVal >= GATE_THRESHOLD) && (!bNoteOn)) {
+    MIDI.sendNoteOn(note, velocity, MIDI_CHANNEL_OMNI);
+    lastNoteOn = note;
+    bNoteOn = !bNoteOn;
+  }
+  else if ((GateVal < GATE_THRESHOLD) && (bNoteOn)) {
+    note = lastNoteOn;
+    MIDI.sendNoteOff(note, 0, MIDI_CHANNEL_OMNI);
+    bNoteOn = !bNoteOn;
+  }
 
- //smothing values CV2
- total = total - readings2[MyIndexCV2];
- readings2[MyIndexCV2] = analogRead(CV2);
- total = total + readings2[MyIndexCV2];
- MyIndexCV2 = MyIndexCV2 + 1;
-
-  if (MyIndexCV2 >= NUM_READINGS)
-  MyIndexCV2 = 0;
-
-
- //smothing values GateIn
- total = total - readings3[MyIndexGate];
- readings3[MyIndexGate] = analogRead(GateIn);
- total = total + readings3[MyIndexGate];
- MyIndexGate = MyIndexGate + 1;
-
-  if (MyIndexGate >= NUM_READINGS)
-  MyIndexGate = 0;
-
-                 //convertir el valor mapeado a nota
-                GateInreading = note;
-                 //enviar la nota que se genero con la velocida de CV2
-                 MIDI.sendNoteOn(note, CV2, MIDI_CHANNEL_OMNI);
-                 delay(100);
-                 MIDI.sendNoteOff(note, CV2, MIDI_CHANNEL_OMNI);
-
-                // const int value = inPitchValue * MIDI_PITCHBEND_MAX * Settings::Toto;
-                // sendPitchBend(value, inChannel);
-                
-                Serial.println(note);
-                Serial.print("\n note:");
-                delay(1);
-                Serial.println(CV1reading);
-                Serial.print("\n CV1:");
-                delay(1);
-                Serial.println(CV2reading);
-                Serial.print("\n CV2:");
-                delay(1);
-                Serial.println(GateInreading);
-                Serial.print("\n GateIn:");
-                delay(1);
-                
-                
-
-
+  delay(10);
 }
-
-
-
 
 
