@@ -75,7 +75,7 @@ void loop() {
   int velocity = map(readingAverage[1], 0, 1023, 0, 127);
   int GateVal = map(readingAverage[2], 0, 1023, 0, 127);
 
-  /// ????
+  // http://www.midikits.net/downloads/source/cv2midi.txt
   if ((GateVal >= GATE_THRESHOLD) && (!bNoteOn)) {
     MIDI.sendNoteOn(note, velocity, MIDI_CHANNEL_OMNI);
     lastNoteOn = note;
