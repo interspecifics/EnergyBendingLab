@@ -47,7 +47,7 @@ void setup() {
   frameRate(15);
   lastOscMillis = millis();
   mOscP5 = new OscP5(this, OSC_IN_PORT);
-  video = new Capture(this, 960, 540, 0); //"ehe camera"
+  video = new Capture(this, 960, 540, "USB2.0 Camera"); //"ehe camera"
   video.start();
 
   opencv = new OpenCV(this, 960, 540);
@@ -450,6 +450,13 @@ void initControls() {
     .setLabel("time-lapse")
       .setPosition(15, 410)
         .setRange(0.01, 60)
+          ;
+ 
+  //label 
+  controllers = cp5.addTextlabel("label1")
+    .setText("(R to record. S to stop)")
+      .setPosition(15, 450)
+        .setColorValue(0xffffffff)
           ;
 
   // Store the default background color, we gonna need it later

@@ -113,11 +113,20 @@ class Blob {
 
     String mAddrPatt = OSC_OUT_PATTERN;
     mMessage.clear();
-    mMessage.setAddrPattern(mAddrPatt+"id"+"x"+"y");
+    mMessage.setAddrPattern(mAddrPatt+"id");
     mMessage.add(id);
+    OscP5.flush(mMessage, oscOutAddress);
+    
+    mMessage.clear();
+    mMessage.setAddrPattern(mAddrPatt+"x");
     mMessage.add(x);
+    OscP5.flush(mMessage, oscOutAddress);
+    
+    mMessage.clear();
+    mMessage.setAddrPattern(mAddrPatt+"y");
     mMessage.add(y);
     OscP5.flush(mMessage, oscOutAddress);
+    
   }
 }
 
