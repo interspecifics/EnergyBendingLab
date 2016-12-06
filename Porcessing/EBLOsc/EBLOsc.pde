@@ -13,15 +13,15 @@ long lastOscMillis;
 void setup() {
   size(600, 700, P2D);
   for (int i=0; i<ss.length; ++i) {
-    ss[i] = new Sensor(new PVector(20, 10+i*110), new PVector(560, 100), "Physarum"+i);
+    ss[i] = new Sensor(new PVector(20, 10+i*110), new PVector(560, 100), "sensors"+i);
   }
   lastOscMillis = millis();
   mOscP5 = new OscP5(this, OSC_IN_PORT);
-  mSerial = new Serial(this, Serial.list()[3], 57600);
+  mSerial = new Serial(this, Serial.list()[2], 8666);
 }
 
 void draw() {
-  background(200);
+  background(0);
 
   // read input
   while (mSerial.available () > 2) {
@@ -48,4 +48,3 @@ void draw() {
     s.draw();
   }
 }
-

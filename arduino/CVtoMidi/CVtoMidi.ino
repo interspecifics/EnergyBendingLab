@@ -9,11 +9,16 @@
 #include <MIDI.h>
 // detalles de la libreria: http://arduinomidilib.fortyseveneffects.com/a00015.html
 
+int led = 13;
+
+
 const int NUM_READINGS = 10;
 
 int readings1[NUM_READINGS];
 int readings2[NUM_READINGS];
 int readings3[NUM_READINGS];
+const int channel = 1;
+
 
 int MyIndexCV1 = 0; // the index of the current reading
 int MyIndexCV2 = 0;
@@ -24,9 +29,9 @@ int average = 0;// the average
 
 
 // CV INPUTS
-int CV1 = 5;
-int CV2 = 6;
-int GateIn = 7;
+int CV1 = A5;
+int CV2 = A6;
+int GateIn = A7;
 
 // CV VARIABLE
 int CV1val;
@@ -46,6 +51,10 @@ int velocity; // velocidad 0 = gateOff otra velocidad = gateOn
 void setup() {
   //envia a todos los canales
   MIDI.begin(MIDI_CHANNEL_OMNI);
+    Serial.begin(57600);
+   Serial.println("CV to MIDI");
+  
+  pinMode(led, OUTPUT);  
 
   int sum = 0;
 
@@ -78,9 +87,9 @@ void loop() {
   CV1reading = analogRead(CV1);
   CV2reading = analogRead(CV2);
   GateInreading = analogRead(GateIn);
-  CV1val = map(CV1reading, 0, 1023, 0, 127);
-  CV2val = map(CV2reading, 0, 1023, 0, 127);
-  GateInVal = map(GateInreading, 0, 1023, 0, 127);
+  CV1val = map(CV1reading, 0, 1023, 1, 127);
+  CV2val = map(CV2reading, 0, 1023, 1, 127);
+  GateInVal = map(GateInreading, 0, 1023, 22, 99);
 
 
   //smothing values CV1
@@ -112,31 +121,31 @@ void loop() {
   MyIndexGate = 0;
 
                  //convertir el valor mapeado a nota
-                GateInreading = note;
+                GateInVal = note;
                  //enviar la nota que se genero con la velocida de CV2
-                 MIDI.sendNoteOn(note, CV2, MIDI_CHANNEL_OMNI);
+                 MIDI.sendNoteOn(note/2, CV1, channel);
                  delay(100);
-                 MIDI.sendNoteOff(note, CV2, MIDI_CHANNEL_OMNI);
+                 MIDI.sendNoteOff(note/2, CV1, channel);
 
                 // const int value = inPitchValue * MIDI_PITCHBEND_MAX * Settings::Toto;
                 // sendPitchBend(value, inChannel);
                 
-                Serial.println(note);
-                Serial.print("\n note:");
-                delay(1);
-                Serial.println(CV1reading);
-                Serial.print("\n CV1:");
-                delay(1);
-                Serial.println(CV2reading);
-                Serial.print("\n CV2:");
-                delay(1);
-                Serial.println(GateInreading);
-                Serial.print("\n GateIn:");
-                delay(1);
+                Serial.print(note, DEC);
+                Serial.print("\t note:");
+                Serial.print(CV1reading,DEC);
+                Serial.print("\t CV1:");
+                Serial.print(CV2reading, DEC);
+                Serial.print("\t CV2:");
+                Serial.print(GateInreading, DEC);
+                Serial.print("\t GateIn:");
+                Serial.println();
+                delay(10);
                 
-                
-
-
+     digitalWrite(led, HIGH);
+     delay(CV1); 
+     digitalWrite(led, LOW);
+     delay(CV1);
+          
 }
 
 

@@ -66,7 +66,7 @@ void setup() {
   frameRate(15);
   
   //video = new Capture(this, cameras[0]);
-  video = new Capture(this, 960, 540, "HD Pro Webcam C920");
+  video = new Capture(this, 960, 540, 0);
   video.start();
   
   opencv = new OpenCV(this, 960, 540);

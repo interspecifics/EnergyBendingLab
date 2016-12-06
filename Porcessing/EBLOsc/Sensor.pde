@@ -148,13 +148,13 @@ public class Sensor {
 
     // filtered
     mMessage.clear();
-    mMessage.setAddrPattern(mAddrPatt+"filtrado");
+    mMessage.setAddrPattern(mAddrPatt+"avr");
     mMessage.add(getAverageValueNormalized());
     OscP5.flush(mMessage, oscOutAddress);
 
     // raw
     mMessage.clear();
-    mMessage.setAddrPattern(mAddrPatt+"crudo");
+    mMessage.setAddrPattern(mAddrPatt+"raw");
     mMessage.add(getRawValue());
     OscP5.flush(mMessage, oscOutAddress);
   }
