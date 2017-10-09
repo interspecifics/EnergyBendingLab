@@ -17,7 +17,7 @@ void setup() {
   }
   lastOscMillis = millis();
   mOscP5 = new OscP5(this, OSC_IN_PORT);
-  mSerial = new Serial(this, Serial.list()[2], 8666);
+  mSerial = new Serial(this, Serial.list()[11], 57600);
 }
 
 void draw() {
