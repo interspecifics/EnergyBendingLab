@@ -3,7 +3,7 @@
 
 
 // read at most 100 times a second
-#define READPERIOD 5
+#define READPERIOD 20
 
 // a header for outgoing serial messages
 #define MSGHEADER 0xAB
